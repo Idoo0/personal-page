@@ -126,61 +126,26 @@
             text-shadow: 0 0 10px rgba(189, 0, 255, 0.7);
         }
 
-        /* Glitch Effect */
-        .glitch {
-            position: relative;
+        /* Text Shimmer Effect */
+        .text-shimmer {
+            background: linear-gradient(
+                90deg,
+                #ffffff 0%,
+                #00f3ff 25%,
+                #bd00ff 50%,
+                #00f3ff 75%,
+                #ffffff 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
         }
         
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 #bd00ff;
-            clip: rect(24px, 550px, 90px, 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        
-        .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 #00f3ff;
-            clip: rect(85px, 550px, 140px, 0);
-            animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-        
-        @keyframes glitch-anim {
-            0% { clip: rect(30px, 9999px, 10px, 0); }
-            10% { clip: rect(70px, 9999px, 130px, 0); }
-            20% { clip: rect(10px, 9999px, 50px, 0); }
-            30% { clip: rect(50px, 9999px, 100px, 0); }
-            40% { clip: rect(20px, 9999px, 90px, 0); }
-            50% { clip: rect(60px, 9999px, 70px, 0); }
-            60% { clip: rect(10px, 9999px, 40px, 0); }
-            70% { clip: rect(40px, 9999px, 80px, 0); }
-            80% { clip: rect(80px, 9999px, 120px, 0); }
-            90% { clip: rect(5px, 9999px, 60px, 0); }
-            100% { clip: rect(45px, 9999px, 95px, 0); }
-        }
-        
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); }
-            10% { clip: rect(15px, 9999px, 60px, 0); }
-            20% { clip: rect(85px, 9999px, 130px, 0); }
-            30% { clip: rect(25px, 9999px, 75px, 0); }
-            40% { clip: rect(55px, 9999px, 95px, 0); }
-            50% { clip: rect(35px, 9999px, 85px, 0); }
-            60% { clip: rect(75px, 9999px, 115px, 0); }
-            70% { clip: rect(5px, 9999px, 45px, 0); }
-            80% { clip: rect(95px, 9999px, 135px, 0); }
-            90% { clip: rect(45px, 9999px, 90px, 0); }
-            100% { clip: rect(20px, 9999px, 70px, 0); }
+        @keyframes shimmer {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
         }
 
         /* Canvas 3D Background */
@@ -404,27 +369,50 @@
 
     <section class="min-h-screen flex items-center justify-center relative pt-20">
         <div class="container mx-auto px-6 text-center z-10">
-            <div class="inline-block px-4 py-1 mb-4 border border-cyber-accent/50 rounded-full bg-cyber-accent/10 text-cyber-accent font-mono text-sm">
+            <div class="inline-block px-4 py-1 mb-4 border border-cyber-accent/50 rounded-full bg-cyber-accent/10 text-cyber-accent font-mono text-sm pulse-glow">
                 Open to Work & Collaboration
             </div>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Data Scientist & <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-primary to-cyber-secondary neon-text">Machine Learning Engineer</span>
+                <span class="text-shimmer">Tech Innovator &</span> <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-primary to-cyber-secondary neon-text" id="typingText"></span><span class="cursor"></span>
             </h1>
             <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto font-light">
                 Membangun solusi cerdas dengan AI, Blockchain, dan Data. 
                 Spesialisasi dalam Deep Learning, NLP, dan Pengembangan Backend Skalabel.
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#projects" class="px-8 py-3 bg-cyber-primary text-black font-bold rounded hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(0,243,255,0.4)]">
-                    Lihat Proyek
+                <a href="#projects" class="px-8 py-3 bg-cyber-primary text-black font-bold rounded hover:bg-cyan-400 transition-all shadow-[0_0_20px_rgba(0,243,255,0.4)] hover:shadow-[0_0_30px_rgba(0,243,255,0.8)]">
+                    <i class="ri-rocket-line mr-2"></i>Lihat Proyek
                 </a>
-                <a href="https://github.com/Idoo0" target="_blank" class="px-8 py-3 border border-white/20 hover:border-white rounded text-white transition-all flex items-center justify-center gap-2 glass-card">
+                <a href="https://github.com/Idoo0" target="_blank" class="px-8 py-3 border border-white/20 hover:border-cyber-secondary rounded text-white transition-all flex items-center justify-center gap-2 glass-card">
                     <i class="ri-github-fill text-xl"></i> GitHub
+                </a>
+                <a href="#" class="px-8 py-3 border border-white/20 hover:border-cyber-accent rounded text-white transition-all flex items-center justify-center gap-2 glass-card">
+                    <i class="ri-download-line text-xl"></i> Download CV
                 </a>
             </div>
             
-            <div class="mt-16 overflow-hidden relative w-full max-w-4xl mx-auto">
+            <!-- Animated Stats -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+                <div class="text-center">
+                    <div class="text-4xl font-bold stat-number" data-target="10">0</div>
+                    <div class="text-gray-500 text-sm mt-1">Projects</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold stat-number" data-target="6">0</div>
+                    <div class="text-gray-500 text-sm mt-1">Awards</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold stat-number" data-target="3">0</div>
+                    <div class="text-gray-500 text-sm mt-1">Years Exp</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold stat-number" data-target="91">0</div>
+                    <div class="text-gray-500 text-sm mt-1">% Model Acc</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 overflow-hidden relative w-full max-w-4xl mx-auto">
                 <div class="flex gap-8 justify-center items-center opacity-50 font-mono text-sm">
                     <span>PYTHON</span>
                     <span>•</span>
@@ -439,12 +427,198 @@
                     <span>C++</span>
                 </div>
             </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 float">
+                <a href="#about" class="text-gray-500 hover:text-cyber-primary transition-colors">
+                    <i class="ri-arrow-down-double-line text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center font-mono reveal"><span class="text-cyber-primary">&lt;</span>About_Me<span class="text-cyber-primary">/&gt;</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                <div class="reveal">
+                    <div class="relative">
+                        <div class="w-64 h-64 mx-auto rounded-2xl gradient-border overflow-hidden">
+                            <div class="w-full h-full bg-gradient-to-br from-cyber-primary/20 to-cyber-secondary/20 flex items-center justify-center">
+                                <i class="ri-user-line text-8xl text-cyber-primary/50"></i>
+                            </div>
+                        </div>
+                        <!-- Floating Icons -->
+                        <div class="absolute -top-4 -right-4 w-12 h-12 bg-cyber-primary/20 rounded-full flex items-center justify-center float">
+                            <i class="ri-code-s-slash-line text-cyber-primary"></i>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-cyber-secondary/20 rounded-full flex items-center justify-center float" style="animation-delay: 0.5s;">
+                            <i class="ri-brain-line text-cyber-secondary"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal">
+                    <h3 class="text-2xl font-bold mb-4 text-cyber-primary">Hi, I'm <span class="text-white">Idoo0</span> 👋</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        Seorang <span class="text-cyber-accent">Data Scientist</span> dan <span class="text-cyber-secondary">Machine Learning Engineer</span> yang bersemangat dalam membangun solusi berbasis AI yang berdampak nyata.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Dengan pengalaman dalam Deep Learning, NLP, Computer Vision, dan Competitive Programming, saya selalu mencari tantangan baru untuk dipecahkan dengan teknologi.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="px-3 py-1 bg-cyber-primary/10 border border-cyber-primary/30 rounded-full text-cyber-primary text-sm">🎓 Bangkit Academy 2024</span>
+                        <span class="px-3 py-1 bg-cyber-secondary/10 border border-cyber-secondary/30 rounded-full text-cyber-secondary text-sm">🏆 PIMNAS 38 Winner</span>
+                        <span class="px-3 py-1 bg-cyber-accent/10 border border-cyber-accent/30 rounded-full text-cyber-accent text-sm">💻 ICPC Participant</span>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <a href="#" class="text-2xl text-gray-400 hover:text-cyber-primary transition-colors"><i class="ri-linkedin-fill"></i></a>
+                        <a href="https://github.com/Idoo0" class="text-2xl text-gray-400 hover:text-cyber-secondary transition-colors"><i class="ri-github-fill"></i></a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-cyber-accent transition-colors"><i class="ri-instagram-line"></i></a>
+                        <a href="#" class="text-2xl text-gray-400 hover:text-white transition-colors"><i class="ri-mail-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-black/30">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center font-mono reveal"><span class="text-cyber-secondary">{"</span>Skills<span class="text-cyber-secondary">"}</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Programming & ML -->
+                <div class="reveal glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="ri-code-s-slash-line text-cyber-primary"></i>
+                        Programming & ML
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Python</span>
+                                <span class="text-cyber-primary text-sm">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">TensorFlow / PyTorch</span>
+                                <span class="text-cyber-primary text-sm">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">C++ (Competitive)</span>
+                                <span class="text-cyber-primary text-sm">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">SQL & Data Analysis</span>
+                                <span class="text-cyber-primary text-sm">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Frameworks & Tools -->
+                <div class="reveal glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <i class="ri-tools-line text-cyber-secondary"></i>
+                        Frameworks & Tools
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Flutter</span>
+                                <span class="text-cyber-secondary text-sm">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85" style="background: linear-gradient(90deg, #bd00ff, #00f3ff);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Laravel / NestJS</span>
+                                <span class="text-cyber-secondary text-sm">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80" style="background: linear-gradient(90deg, #bd00ff, #00f3ff);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">Docker & Cloud</span>
+                                <span class="text-cyber-secondary text-sm">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75" style="background: linear-gradient(90deg, #bd00ff, #00f3ff);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm">GenAI / LLMs</span>
+                                <span class="text-cyber-secondary text-sm">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92" style="background: linear-gradient(90deg, #bd00ff, #00f3ff);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tech Stack Icons -->
+            <div class="mt-12 reveal">
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-python-line text-3xl text-yellow-400 group-hover:text-yellow-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-flutter-line text-3xl text-blue-400 group-hover:text-blue-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-reactjs-line text-3xl text-cyan-400 group-hover:text-cyan-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-database-2-line text-3xl text-green-400 group-hover:text-green-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-git-branch-line text-3xl text-orange-400 group-hover:text-orange-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-cloud-line text-3xl text-purple-400 group-hover:text-purple-300"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-xl hover:scale-110 transition-transform group">
+                        <i class="ri-terminal-box-line text-3xl text-gray-400 group-hover:text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="experience" class="py-20 relative">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center font-mono"><span class="text-cyber-secondary">#</span> Experience_Log</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center font-mono reveal"><span class="text-cyber-secondary">#</span> Experience_Log</h2>
             
             <div class="relative border-l border-gray-700 ml-4 md:ml-10 space-y-12">
                 
@@ -512,7 +686,7 @@
 
     <section id="projects" class="py-20 bg-black/30">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center font-mono"><span class="text-cyber-primary">0x</span>Featured_Projects</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center font-mono reveal"><span class="text-cyber-primary">0x</span>Featured_Projects</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -603,7 +777,7 @@
 
     <section id="achievements" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center font-mono">Achievements_<span class="text-cyber-accent">Unlocked</span></h2>
+            <h2 class="text-4xl font-bold mb-12 text-center font-mono reveal">Achievements_<span class="text-cyber-accent">Unlocked</span></h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 
@@ -762,6 +936,179 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // ========== ENHANCED FEATURES ==========
+        
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = e.clientX - 4 + 'px';
+            cursorDot.style.top = e.clientY - 4 + 'px';
+            cursorRing.style.left = e.clientX - 20 + 'px';
+            cursorRing.style.top = e.clientY - 20 + 'px';
+        });
+        
+        // Cursor hover effect on links
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+        });
+        
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = (scrollTop / scrollHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+        
+        // Typing Effect
+        const typingTexts = ['Machine Learning Engineer', 'Software Engineer', 'Backend Engineer', 'Mobile Developer', 'Data Scientist', 'Project Manager', 'AI Trainer & Enthusiast', 'Researcher'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+        
+        function typeEffect() {
+            const currentText = typingTexts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % typingTexts.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typeSpeed);
+        }
+        
+        typeEffect();
+        
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+        
+        // Skill Bars Animation
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const parent = bar.closest('.reveal');
+                if (parent && parent.classList.contains('active')) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width + '%';
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', animateSkillBars);
+        
+        // Stats Counter Animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const current = parseInt(stat.textContent);
+                
+                if (current < target) {
+                    const increment = Math.ceil(target / 50);
+                    stat.textContent = Math.min(current + increment, target);
+                    setTimeout(() => animateStats(), 30);
+                }
+            });
+        }
+        
+        // Trigger stats animation when hero section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const heroSection = document.querySelector('section');
+        if (heroSection) observer.observe(heroSection);
+        
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('navbar-default');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('show');
+            
+            if (menu.classList.contains('show')) {
+                icon.className = 'ri-close-line';
+            } else {
+                icon.className = 'ri-menu-line';
+            }
+        }
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#navbar-default a').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.getElementById('navbar-default');
+                const icon = document.getElementById('menuIcon');
+                menu.classList.remove('show');
+                icon.className = 'ri-menu-line';
+            });
+        });
+        
+        // Back to Top Button
+        const backToTop = document.createElement('button');
+        backToTop.className = 'back-to-top';
+        backToTop.innerHTML = '<i class="ri-arrow-up-line text-black text-xl"></i>';
+        document.body.appendChild(backToTop);
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
     </script>
 </body>
